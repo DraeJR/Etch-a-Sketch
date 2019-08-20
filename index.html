@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Etch a Sketch</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+ <div class="wrapper">
+  <button id="new"> New Grid</button>
+  <button  onclick="clearGrid()" id="clear"> Clear </button>
+</div>
+
+<div id="container">
+    <!--Javascript `magic` goes here -->
+</div>
+
+  <script>
+
+
+var gridCreated = false;
+function createGrid(){
+   var newGrid = prompt("please enter a number between 1 and 50");
+    //input validation
+    if(newGrid < 1 || isNaN(newGrid) || newGrid > 50){
+      alert("Please input a number from 2 - 50.");
+    }
+   else{
+     for(let i = 0; i < newGrid; i++){
+     const row = document.createElement('div');
+     row.classList.add('row');
+     container.appendChild(row);
+
+     for(let i = 0; i < newGrid; i++){
+     const column = document.createElement('div');
+     column.classList.add('column');
+     row.appendChild(column);
+   }
+   }
+   gridCreated = true;
+  function changeColor(){
+    this.classList.add('colcolour');
+  }
+  const columns = document.querySelectorAll('.column');
+  columns.forEach(column => column.addEventListener('mouseenter', changeColor));
+   }
+}
+
+function clearGrid() {
+        var container = document.querySelector("#container");
+        var child = container.lastElementChild;
+        while (child) {
+            container.removeChild(child);
+            child = container.lastElementChild;
+        }
+    }
+ var btn = document.getElementById(
+          "new").onclick = function() {
+            if (gridCreated){
+              clearGrid()
+              gridCreated = false;
+                createGrid()
+            }
+            else {  createGrid() }
+        }
+
+  </script>
+</body>
+</html>
